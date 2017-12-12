@@ -1,0 +1,23 @@
+// mixin header
+// ----------------------------------
+@mixin header-border-fixed {
+  // fixed 状态取消border
+  &.is-fixed {
+    border-bottom: 0.55px solid $header-bottom-border-color;
+    /*no*/
+    &:after {
+      background-color: $header-bottom-border-color;
+      content: ' ';
+      display: block;
+      height: 0;
+      width: 200%;
+    }
+  }
+}
+
+@mixin header-border($scaleY:0.5) {
+  &:after {
+    transform: scaleY(0.5);
+  }
+  @include header-border-fixed;
+}

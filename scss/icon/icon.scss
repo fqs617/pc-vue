@@ -1,0 +1,174 @@
+// 自定义图标 字体 这里是指的 图片 非 font 方式
+// ----------------------------------
+@import "../variables.scss";
+@import "../mixin.scss";
+.bq-icon- {
+  // 首页 toolbar 用
+  // home
+  &home {
+    @include icon('/home/shouye.png', 20px, 1px, 20px, 20px, -10px);
+  }
+  // 闪送超市
+  &mart {
+    @include icon('/home/shansong2@2x.png', 20px, 1px, 20px, 20px, -10px);
+  }
+  // 购物车
+  &cart {
+    @include icon('/home/gouwuche2@2x.png', 20px, 1px, 20px, 20px, -10px);
+  }
+  // 我的
+  &my {
+    @include icon('/home/wode2@2x.png', 20px, 1px, 20px, 20px, -10px);
+  }
+  // 顶部用户
+  // 返回
+  &back {
+    @include baseIcon('/icon/fanhui@2x.png');
+  }
+  //分享
+  &share {
+    @include baseIcon('/icon/fenxiang@2x.png');
+  }
+  // 下拉箭头
+  &arrow_dwon {
+    @include baseIcon('/home/arrow.png',10px, 10px){
+      margin-top: -1px;
+    };
+  }
+  // 搜索
+  &search {
+    @include baseIcon('/home/sousuo.png', 20px, 20px);
+  }
+  // more
+  &more {
+    @include baseIcon('/home/more.png', 20px, 20px);
+  }
+  // 扫一扫
+  &saoyisao {
+    @include baseIcon('/home/saoyisao.png', 20px, 20px);
+  }
+  // 签到
+  &qiandao {
+    @include baseIcon('/home/qiandao.png', 20px, 20px) {
+      margin-top: -1px;
+    }
+  }
+  // 充值
+  &chongzhi {
+    @include baseIcon('/home/chongzhi.png', 20px, 20px) {
+      margin-top: -1px;
+    }
+  }
+  // 摇一摇
+  &yaoyiyao {
+    @include baseIcon('/home/yaoyiyao.png', 20px, 20px) {
+      margin-top: -1px;
+    }
+    ;
+  }
+  // toast
+  &toast {
+    @include baseIcon('/home/yaoyiyao.png', 26px, 18px);
+  }
+
+  &close {
+    @include baseIcon('/pay/close.png');
+  }
+
+  // header btn close
+  &h-close {
+     @include baseIcon('/icon/close.png');
+  }
+
+  // 键盘删除
+  &key-del {
+    @include baseIcon('/pay/del.png', 20px, 14px);
+  }
+
+  // 商品详情页 返回
+  &goods-back {
+    @include baseIcon('/icon/fanhuibai.png', 30px, 30px);
+  }
+
+  // 商品详情页 分享
+  &goods-share {
+    @include baseIcon('/icon/fenxiangbai.png', 30px, 30px);
+  }
+
+  // 添加
+  &goods-add {
+    @include baseIcon2('/goods/add.png', 25px, 26px);
+  }
+
+  // 不能添加
+  &goods-disadd {
+    @include baseIcon2('/goods/disadd.png', 25.5px, 26px);
+  }
+  // 删除
+  &goods-delete {
+    @include baseIcon2('/goods/delete.png', 25.5px, 26px);
+  }
+  // 商品详情页添加
+  &goods-add-grey{
+    @include baseIcon2('/goods/add_grey.png', 25.5px, 26px);
+  }
+
+  // 商品详情页添加
+  &goods-delete-grey{
+    @include baseIcon2('/goods/delete_grey.png', 25.5px, 26px);
+  }
+  // 商铺搜索框
+  &goods-search {
+    @include baseIcon('/goods/search.png', 16px, 16px);
+  }
+  // 商品清空
+  &goods-clear {
+    @include baseIcon('/goods/clear.png', 16px, 16px);
+  }
+
+  &g-cart {
+    @include baseIcon('/icon/goods-cart.png', 60px, 60px);
+  }
+
+  // 定位当前地址
+  &location{
+    @include baseIcon('/icon/dingwei.png', 20px, 20px);
+  }
+  // 定位当前地址
+  &location-pois{
+    @include baseIcon('/icon/dingwei2.png', 20px, 20px);
+  }
+  // loading 图标
+  &loading{
+    @include baseIcon('/icon/loading.png', 20px, 20px);
+    animation: spin 1s infinite linear;
+  }
+  // item right
+  &right {
+    @include baseIcon('/icon/right.png', 16px, 16px);
+  }
+  // 添加
+  &add {
+    @include baseIcon('/icon/tianjia.png', 18px, 18px);
+  }
+  &down-b{
+    @include baseIcon('/mart/down-b.png', 10px, 10px);
+  }
+
+  // 搜索删除
+  &search-del {
+    @include baseIcon('/icon/shanchu.png', 20px, 20px)
+  }
+}
+@keyframes spin {
+	from {transform: rotate(0deg);}
+	to {transform: rotate(360deg);}
+}
+.is-selected {
+  .bq-icon- {
+    @include toolbar-icon-selectd('home', '/home/shoye_active.png');
+    @include toolbar-icon-selectd('mart', '/home/shansongchaoshi1@2x.png');
+    @include toolbar-icon-selectd('cart', '/home/gouwuche1@2x.png');
+    @include toolbar-icon-selectd('my', '/home/wode1@2x.png');
+  }
+}

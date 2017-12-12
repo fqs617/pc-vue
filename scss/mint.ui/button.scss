@@ -1,0 +1,12 @@
+.mint-button {
+  &--primary {
+    background-color: $primary;
+    color: $button-color;
+    border-radius: 20px;
+    box-shadow: 0 3px 10px 3px rgba(203, 181, 80, 0.35);
+  }
+  &-text {
+    @include font-dpr(14px);
+    color: #333333;
+  }
+}

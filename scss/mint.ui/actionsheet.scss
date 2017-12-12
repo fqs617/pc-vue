@@ -1,0 +1,11 @@
+.mint-actionsheet{
+  &-list{
+    padding: 0 25px;
+    background-color: #fff;
+  }
+  &-listitem{
+    @include font-dpr(15px);
+    color: #333333;
+    letter-spacing: 0;
+  }
+}

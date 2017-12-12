@@ -1,0 +1,39 @@
+.mint-header {
+  background-color: $header-bg;
+  height: $header-height;
+  padding: 0 $header-padding;
+  &:after {
+    background-color: $header-bottom-border-color;
+    content: ' ';
+    display: block;
+    width: 200%;
+    height: 1px;/*no*/
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    transform: scaleY(0.5);
+  }
+  @include header-border-fixed;
+}
+
+[no-border] {
+  .mint-header:after {
+    height: 0;
+  }
+}
+
+.bq-header {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1900;
+  display: block;
+  width: 100%;
+  height: $header-height;
+}
+
+.mint-header-title {
+  font-family: $font-family-base;
+  @include font-dpr(17px);
+  color: $header-title-color;
+}

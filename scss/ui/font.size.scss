@@ -1,0 +1,13 @@
+@for $i from 12 through 64 {
+  .bq-f-size-#{$i} {
+    font-size: #{$i}px;/*no*/
+    [data-dpr="2"] & {
+
+      font-size: #{$i * 2}px;/*no*/
+    }
+
+    [data-dpr="3"] & {
+      font-size:  #{$i * 3}px;/*no*/
+    }
+  }
+}

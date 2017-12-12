@@ -1,0 +1,38 @@
+$msgboxContentColor:#505050;
+$msgboxBtnColor:#333333;
+.mint-msgbox-wrapper {
+  .mint-msgbox {
+    width: 250px;
+    // height: 100px;
+    border-radius: 8px;
+    &-header{
+      display: none;
+    }
+    &-content {
+      min-height: 52px;
+      padding: 15px 10px;
+    }
+    &-message {
+      @include font-dpr(14px);
+      color: $msgboxContentColor;
+      line-height: 22px;
+    }
+    &-btns {
+      height: 48px;
+      line-height: 48px;
+    }
+    &-btn {
+      background-color: $primary;
+      @include font-dpr(14px);
+      color: $msgboxBtnColor;
+    }
+    &-cancel {
+      background: #fff;
+    }
+    &-input{
+      input{
+        text-align: center;
+      }
+    }
+  }
+}

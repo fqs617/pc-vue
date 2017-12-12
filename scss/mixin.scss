@@ -1,0 +1,216 @@
+@mixin common-border {
+  position: relative;
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    z-index: 2;
+  }
+}
+
+@mixin border($color: #ccc, $border-radius: 4px) {
+   @include common-border;
+  &:after {
+    width: 200%;
+    height: 200%;
+    // margin-top: -1px;
+    // margin-left: -1px;
+    transform: scale(0.5);
+    border: 1px solid $color;
+    border-radius: $border-radius;
+    // top: -50%;
+    // right: -50%;
+    transform-origin: top left;
+    top: 0;
+    left: 0;
+    @content;
+  }
+}
+
+@mixin border-top($color: #ccc) {
+   @include common-border;
+
+  &:after {
+    height: 1px;
+    width: 100%;
+    transform: scaleY(0.5);
+    border-top: 1px solid $color;
+    top: -1px;
+    left: 0;
+  }
+}
+
+@mixin border-bottom($color: #ccc) {
+   @include common-border;
+
+  &:after {
+    height: 1px;
+    width: 100%;
+    border-bottom: 1px solid $color;
+    bottom: -1px;
+    right: 0;
+    transform: scaleY(0.5);
+  }
+}
+
+@mixin border-left($color: #ccc) {
+   @include common-border;
+
+  &:after {
+    height: 100%;
+    width: 1px;
+    border-left: 1px solid $color;
+    top: 0;
+    left: -1px;
+    transform: scaleX(0.5);
+  }
+}
+
+@mixin border-right($color: #ccc) {
+   @include common-border;
+
+  &:after {
+    height: 100%;
+    width: 1px;
+    border-right: 1px solid $color;
+    top: 0;
+    right: -1px;
+    transform: scaleX(0.5);
+  }
+}
+
+@mixin text-overflow-1 {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+// 控制文本在不同分配率 的字体大小 @include font-dpr(16px);
+@mixin font-dpr($font-size) {
+  font-size: $font-size;/*no*/
+  [data-dpr="2"] & {
+    font-size: $font-size * 2;/*no*/
+  }
+
+  [data-dpr="3"] & {
+    font-size: $font-size * 3;/*no*/
+  }
+}
+
+// 通用 图片处理 $img 指路径资源
+@mixin baseIcon($img, $width:16px, $height:16px) {
+  display: inline-block;
+  width: $width;/*no*/
+  height: $height;/*no*/
+  position: relative;
+  vertical-align: middle;
+
+  &:before {
+    content: "";
+    display: block;
+    width: $width;/*no*/
+    height: $height;/*no*/
+    background: url("#{$iconImgUrl}#{$img}") no-repeat;
+    background-size: 100%;
+    position: absolute;
+    top: 0;
+    @content;
+  }
+}
+
+@mixin baseIcon2($img, $width:16px, $height:16px) {
+  display: inline-block;
+  width: $width;
+  height: $height;
+  position: relative;
+  vertical-align: middle;
+  &:before {
+    content: "";
+    display: block;
+    width: $width;
+    height: $height;
+    background: url("#{$iconImgUrl}#{$img}") no-repeat;
+    background-size: 100%;
+    position: absolute;
+    top: 0;
+    @content;
+  }
+}
+
+// 工具条选中后 图标效果
+@mixin toolbar-icon-selectd($name, $imgUrl) {
+  &#{$name}:before {
+    background: url("#{$iconImgUrl}#{$imgUrl}") no-repeat;
+    background-size: 100%;
+  }
+}
+
+// input @mixin placeholder 处理
+@mixin placeholder($fontSize:13px, $color:#999999) {
+  &:-moz-,
+  &:-ms-input-,
+  &::-moz-,
+  &::-webkit-input- {
+    &placeholder {
+      font-size: $fontSize;/*no*/
+      color: $color;
+    }
+  }
+}
+
+/* ANIMATION */
+$animation-curve-fast-out-slow-in: cubic-bezier(0.4, 0, 0.2, 1) !default;
+$animation-curve-linear-out-slow-in: cubic-bezier(0, 0, 0.2, 1) !default;
+$animation-curve-fast-out-linear-in: cubic-bezier(0.4, 0, 1, 1) !default;
+$animation-curve-default: $animation-curve-fast-out-slow-in !default;
+@mixin button-transition {
+  transition: box-shadow 0.2s $animation-curve-fast-out-linear-in, background-color 0.2s $animation-curve-default, color 0.2s $animation-curve-default;
+}
+
+@mixin ext-overflow($t) {
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: $t;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: break-all;
+  -webkit-box-pack: center;
+  white-space: normal;
+}
+
+// 解决 520 的 兼容性问题
+@mixin mini320 {
+   @media screen and ( min-width: 318px) and ( max-width: 360px){
+    @content;
+  }
+}
+
+// 0.5 px 解决方案
+@mixin border-zero-5($color:#cccccc) {
+  position: relative;
+  border: 0;
+
+  &:after {
+    content: '';
+    width: 200%;
+    height: 200%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 1px solid $color;/*no*/
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    -webkit-transform-origin: top left;
+    transform-origin: top left;
+    @content;
+  }
+}
+
+@mixin img-loading($height: 120px) {
+  &[lazy=loading]{
+    width: 100%;
+    height: #{$height};
+    @content;
+  }
+}

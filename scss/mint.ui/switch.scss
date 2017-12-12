@@ -1,0 +1,19 @@
+.mint-switch{
+  &-core{
+    width: 50px;
+    height: 28px;
+    &:before{
+      width: 48px;
+      height: 26px;
+    }
+    &:after{
+      width: 26px;
+      height: 26px;
+    }
+  }
+}
+
+.mint-switch-input:checked + .mint-switch-core {
+    border-color: $primary;
+    background-color: $primary;
+}

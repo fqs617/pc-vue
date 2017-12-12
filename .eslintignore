@@ -1,0 +1,5 @@
+node_modules/**
+build/**
+config/*
+src/lib/zepto/**
+dist/**

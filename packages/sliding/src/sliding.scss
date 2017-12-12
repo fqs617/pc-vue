@@ -1,0 +1,97 @@
+.bq-item-sliding {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  width: 100%;
+  z-index: 5;
+}
+
+.bq-item-sliding .item {
+  position: static;
+  transition: transform 150ms ease-in-out;
+  z-index: 5;
+}
+
+.bq-item-options {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 4; //display: none;
+  justify-content: flex-end;
+  height: 100%;
+  font-size: 14px;
+  visibility: hidden;
+  transition: transform 150ms ease-in-out;
+}
+
+.bq-item-options[side=left] {
+  right: auto;
+  left: 0;
+  justify-content: flex-start;
+}
+
+.bq-item-options .button {
+  margin: 0;
+  padding: 0 .7em;
+  height: 100%;
+  border-radius: 0;
+  box-shadow: none;
+  box-sizing: content-box;
+}
+
+.bq-item-options:not([icon-left]) .button:not([icon-only]) {
+  .button-inner {
+    flex-direction: column;
+  }
+  .bq-icon {
+    padding-right: 0;
+    padding-bottom: .3em;
+    padding-left: 0;
+  }
+}
+
+.bq-item-sliding.active-slide {
+  .item,
+  .item.activated {
+    position: relative;
+    z-index: 5;
+    opacity: 1;
+    transition: transform 500ms cubic-bezier(.36, .66, .04, 1);
+    pointer-events: none;
+    will-change: transform;
+  }
+  .bq-item-options {
+    display: flex;
+  }
+  &.active-options-left .bq-item-options[side=left] {
+    width: 100%;
+    visibility: visible;
+  }
+  &.active-options-right .bq-item-options:not([side=left]) {
+    width: 100%;
+    visibility: visible;
+  }
+}
+
+// Item Expandable Animation
+// --------------------------------------------------
+.button[expandable] {
+  flex-shrink: 0;
+  transition-duration: 0;
+  transition-property: none;
+  transition-timing-function: cubic-bezier(.65, .05, .36, 1);
+}
+
+.bq-item-sliding.active-swipe-right button[expandable] {
+  order: 1;
+  padding-left: 90%;
+  transition-duration: .6s;
+  transition-property: padding-left;
+}
+
+.bq-item-sliding.active-swipe-left button[expandable] {
+  order: -1;
+  padding-right: 90%;
+  transition-duration: .6s;
+  transition-property: padding-right;
+}
