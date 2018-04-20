@@ -1,5 +1,6 @@
 import { Lazyload, Spinner, Toast, Actionsheet, Switch, Indicator } from 'mint-ui'
 
+import Bq from './bq/bq'
 import Card from './card'
 import CardContent from './card.content'
 import CardHeader from './card.header'
@@ -112,5 +113,6 @@ export default {
   ClickOutside,
   Lazyload,
   Toast,
-  Indicator
+  Indicator,
+  Bq
 }

@@ -1,11 +1,13 @@
-import Raven from 'raven-js'
+import WxService from '@/services/wx.service'
 /**
  * 微信配置
  * @export
  * @class WxConfig
  */
 export default class WxConfig {
-
+  constructor() {
+    this.WxService = new WxService()
+  }
   /**
    * 初始化微信配置
    * @returns Promise 返回拉取到的 认证信息
@@ -13,7 +15,7 @@ export default class WxConfig {
    */
   async init(url = window.location.href) {
     try {
-      let res = await this.WechatService.getJsApiSign({url: url})
+      let res = await this.WxService.getSign({url: url})
       wx.config({
         debug: false,
         appId: res.appId,
@@ -23,17 +25,16 @@ export default class WxConfig {
         jsApiList: this.getJsApiList()
       })
       wx.ready(() => {
-        // 隐藏刷新按钮
         wx.hideMenuItems({
           menuList: ['menuItem:openWithQQBrowser', 'menuItem:openWithSafari']
         })
       })
       wx.error(res => {
-        Raven.captureMessage('微信 error', {level: 'error', logger: 'weixin.error', extra: res})
+        bqLog.captureMessage('微信 error', {level: 'error', logger: 'weixin.error', extra: res})
       })
       return res
     } catch (error) {
-      Raven.captureException(error)
+      bqLog.captureException(error)
       return error
     }
 
@@ -66,20 +67,22 @@ export default class WxConfig {
    * @returns 返回调用成功后的 localIds
    * @memberOf WxConfig
    */
-  chooseImage() {
+  chooseImage(count = 1) {
     return new Promise((resolve, reject) => {
-      wx.chooseImage({
-        count: 1,
-        sizeType: ['original', 'compressed'],
-        sourceType: ['album', 'camera'],
-        success(res) {
-          resolve(res)
-        },
-        fail(res) {
-          Raven.captureMessage('微信选择图片出错', {level: 'info', logger: 'weixin.error', extra: res})
-          window.alert(JSON.stringify(res))
-          reject(res)
-        }
+      wx.ready(() => {
+        wx.chooseImage({
+          count: count,
+          sizeType: ['original', 'compressed'],
+          sourceType: ['album', 'camera'],
+          success(res) {
+            resolve(res)
+          },
+          fail(res) {
+            bqLog.captureMessage('微信选择图片出错', {level: 'info', logger: 'weixin.error', extra: res})
+            window.alert(JSON.stringify(res))
+            reject(res)
+          }
+        })
       })
     })
   }
@@ -91,16 +94,17 @@ export default class WxConfig {
    *
    * @memberOf WxConfig
    */
-  uploadImage(localId) {
+  uploadImage(localId, callback) {
     return new Promise((resolve, reject) => {
       wx.uploadImage({
         localId: localId,
         isShowProgressTips: 1,
         success(res) {
+          callback && callback(res)
           resolve(res)
         },
         fail(res) {
-          Raven.captureMessage('微信上传图片出错', {level: 'info', logger: 'weixin.error', extra: res})
+          bqLog.captureMessage('微信上传图片出错', {level: 'info', logger: 'weixin.error', extra: res})
           reject(res)
         }
       })
@@ -124,7 +128,7 @@ export default class WxConfig {
           resolve(res)
         },
         fail(res) {
-          Raven.captureMessage('微信调起扫一扫出错', {level: 'info', logger: 'weixin.error', extra: res})
+          bqLog.captureMessage('微信调起扫一扫出错', {level: 'info', logger: 'weixin.error', extra: res})
           window.alert(JSON.stringify(res))
           reject(res)
         }
@@ -156,8 +160,8 @@ export default class WxConfig {
       'scanQRCode',
       'chooseWXPay',
       'menuItem:openWithQQBrowser',
-      'menuItem:openWithSafari'
+      'menuItem:openWithSafari',
+      'getBrandWCPayRequest'
     ]
   }
-
 };

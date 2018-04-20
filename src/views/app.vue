@@ -40,15 +40,19 @@
         getCartList: 'getCartList'
       }),
       onTabItem(selectItem) {
-        if (selectItem === 'cart') {
-          this.$store.commit('GET_CART_STATUS', true)
-          this.getCartList()
-        }
         this.selected = selectItem
         this.$router.push({name: selectItem})
       },
       getUrlSeleted(path) {
         return path.substr(1).split('/')[0].replace(/\?\S+/, '')
+      },
+      scrollTop(val) {
+        this.refContent.scrollTo(val)
+        this.scrollTopValue = val
+      },
+      resetScrollVariable(val, refContent) {
+        this.scrollTopValue = val
+        this.refContent = refContent
       }
     },
     watch: {

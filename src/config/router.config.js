@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import AuthRouter from '@/utils/auth.router'
 import App from '@/views/app.vue'
 import demoRouter from '@/views/demo'
-
+import homeRouter from '@/views/home'
 Vue.use(Router)
 
 let routes = []
@@ -25,6 +25,7 @@ let redirectRoute = {
 }
 
 demoRouter(routes)
+homeRouter(routes)
 
 let authRouter = new AuthRouter()
 let authRouters = authRouter.init(routes.concat([rootRoutr, redirectRoute]))

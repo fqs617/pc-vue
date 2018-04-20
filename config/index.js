@@ -9,7 +9,7 @@ export default {
     assetsRoot: DIST,
     assetsSubPath: 'static',
     assetsPublicPath: '/',
-    port: 80,
+    port: 8990,
     sourceMap: true,
     LOCAL_ENV: { NODE_ENV: '"development"', VERSION: `'${version}'` },
     proxyTable: {},
