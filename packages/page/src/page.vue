@@ -8,10 +8,14 @@ export default {
   name: 'bq-page',
   mounted() {
     this.$html = $('html')
-    !this.$html.hasClass('bq') && this.$html.addClass('bq')
+    !this.$html.data('bq') && this.$html.data('bq', true)
   },
   beforeDestroy() {
-    this.$html.hasClass('bq') && this.$html.removeClass('bq')
+    // 针对 首页 订单 我的 单独处理下
+    let arr = ['home', 'file', 'me']
+    if (arr.indexOf(this.$route.name) === -1) {
+      this.$html.data('bq') && this.$html.removeAttr('data-bq')
+    }
   }
 }
 </script>
@@ -21,7 +25,7 @@ export default {
     height: 100%;
     overflow: hidden;
   }
-  .bq {
+  html[data-bq] {
     @extend %content;
     body, #app {
       @extend %content;

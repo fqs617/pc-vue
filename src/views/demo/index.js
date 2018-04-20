@@ -1,6 +1,7 @@
 import Demo from './src/demo.vue'
 const NativeDemo = resolve => require(['./src/native.vue'], resolve)
-export default function (router) {
+const CardDemo = resolve => require(['./src/card.vue'], resolve)
+export default function(router) {
   router.push({
     path: '/demo',
     name: 'demo',
@@ -18,5 +19,9 @@ export default function (router) {
       requiresAuth: false,
       requireStoresId: false
     }
+  })
+  router.push({
+    path: '/card',
+    component: CardDemo
   })
 }

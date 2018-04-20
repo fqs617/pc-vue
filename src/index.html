@@ -2,13 +2,16 @@
 <html lang="en">
 
 <head>
-  <title>pc-vue</title>
+  <title></title>
   <meta charset="UTF-8">
   <link rel="dns-prefetch" href="//cdnjs.gtimg.com">
   <link rel="dns-prefetch" href="//res.wx.qq.com">
-  <link rel="dns-prefetch" href="//api.map.baidu.com">
   <link rel="dns-prefetch" href="//static.js.bqmart.cn">
   <link rel="dns-prefetch" href="//img.bqmart.cn">
+  <!--ie-->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <!--360以极速模式(webkit)渲染-->
+  <meta name="renderer" content="webkit">
   <!--允许全屏-->
   <meta content="yes" name="apple-mobile-web-app-capable">
   <meta content="yes" name="apple-touch-fullscreen">
@@ -33,8 +36,12 @@
 	$device.isIphone ? 'bq-ios' : '',
    	$device.isAndroid ? 'bq-android' : '']">
     <bq-base></bq-base>
-	<!-- 路由匹配到的组件将渲染在这里 -->
-	<router-view></router-view>
+    <!-- 路由匹配到的组件将渲染在这里 -->
+    <keep-alive>
+      <router-view v-if="$route.meta.keepAlive"></router-view>
+    </keep-alive>
+    <router-view v-if="!$route.meta.keepAlive"></router-view>
   </div>
+  <script src="//res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
 </body>
 </html>

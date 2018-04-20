@@ -21,7 +21,7 @@ let autoProfixerConfig = {browsers: ['last 2 versions', 'Android >= 4.0', 'iOS >
 // 设计图的总宽度是以750px为标准，则填写75；如果是375px，则填写37.5；以此类推
 let px2remConfig = { remUnit: 37.5 }
 // cssnano({safe:true, zindex: false})
-let postcssOptions = [autoprefixer(autoProfixerConfig), px2rem(px2remConfig)];
+let postcssOptions = [autoprefixer(autoProfixerConfig), px2rem(px2remConfig)]
 let wepackConfig = {
   entry: {},
   devtool: 'source-map',

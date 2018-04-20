@@ -1,10 +1,31 @@
 // 字体
-$font-family-base: PingFang-SC-Regular, "Helvetica Neue", Helvetica, STHeiTi, Arial, sans-serif!default;
+$font-family-base: 'PingFang-SC-Regular', '-apple-system','Yuanti SC',HelveticaNeue-Light,'Helvetica Neue Light','Helvetica Neue',Helvetica,"Microsoft Yahei",Helvetica,Arial,sans-serif!default;
 // 背景颜色
-$bg-color: #F8F8F8;
+$bg-color: #FBF9F1;
 // 主题色
-$primary: #FFDE3B!default;
+$primary: #FFD520!default;
+// 辅助色
+$danger: #FF8113!default;
 // 默认的资源存放路径
 $iconImgUrl:'../assets/img';
 // border color
 $border-color: #D8D8D8!default;
+// font color
+$font-color: #505050!default;
+// 淡的color e2e2e2
+$light-border-color: #e2e2e2!default;
+// 优惠券颜色
+$coupon-color: #FF3737;
+$cate-font-color: #B79310;
+
+$price: #ff4e13;
+// Global footer
+// ----------------------------------
+$footer-height: 52px;
+
+// Global Card
+// ----------------------------------
+$card-header-height: 34px;
+$card-header-color: $font-color;
+$card-radius: 0;
+$card-footer-height: 50px;

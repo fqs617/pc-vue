@@ -3,9 +3,10 @@
     <mi-header :title="title">
       <template slot="left">
         <slot name="left" v-if="isLeft"></slot>
-        <bq-button v-if="!isLeft && isLeftButton" @click="onBack($event)">
+        <bq-button  @click="onBack($event)">
           <slot name="leftIcon" v-if="isLeftIcon"></slot>
-          <i v-if="!isLeftIcon" class="bq-icon-back" slot="icon" ></i>
+          <!--  isLeftIcon 判断要不要展示返回剪头-->
+          <i  class="bq-icon-back" slot="icon" ></i>
         </bq-button>
       </template>
       <template slot="right">
@@ -42,6 +43,10 @@ export default {
   methods: {
     init() {
       let $el = $(this.$el)
+      console.log(this.isLeftButton)
+      console.log(this.isLeftIcon)
+      console.log(this.isLeft)
+      console.log(!this.isLeft && this.isLeftButton)
       $el.on('touchmove', e => {
         e.preventDefault()
       })

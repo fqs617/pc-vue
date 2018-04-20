@@ -2,11 +2,28 @@
   &--primary {
     background-color: $primary;
     color: $button-color;
-    border-radius: 20px;
-    box-shadow: 0 3px 10px 3px rgba(203, 181, 80, 0.35);
+    border-radius: 1px;
   }
   &-text {
-    @include font-dpr(14px);
-    color: #333333;
+    @include font-dpr(16px);
+    color: $button-color;
+  }
+
+  &--default {
+    background: #FFFFFF;
+    border: 1px solid $primary;
+    border-radius: 1px;
+    box-shadow: none;
+  }
+
+  &--danger {
+    background-color: $danger;
+    .mint-button--normal .mint-button-text {
+      @include font-dpr(14px);
+      color: #FFFFFF;
+    }
+    .mint-button-text {
+      color: #FFFFFF;
+    }
   }
 }

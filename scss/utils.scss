@@ -1,3 +1,6 @@
+.mint-toast{
+  z-index: 999999
+}
 .clearfix {
   overflow: auto;
   zoom: 1;
@@ -32,15 +35,12 @@
   @include text-overflow-1;
 }
 
-// 普通长按钮 居中 适用于 预约 成功页 等
-.btn-m60 {
-  margin: 21px 60px;
-}
-
 .d-c {
   color: #FA4A0D!important;
 }
-
+.d-price{
+  color: #FF8113!important;
+}
 .active-label {
   width: 35px;
   height: 15px;
@@ -102,6 +102,7 @@ div.seckill-content__img__statu {
   line-height: 40px;
   text-align: center;
   @include font-dpr(14px);
+  color: #666;
 }
 
 img {

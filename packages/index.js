@@ -1,4 +1,15 @@
-import { Lazyload, Spinner, Toast, Actionsheet, Switch, Indicator } from 'mint-ui'
+import {
+  Lazyload,
+  Spinner,
+  Toast,
+  Actionsheet,
+  Switch,
+  Indicator,
+  TabContainer,
+  TabContainerItem,
+  TabItem,
+  Tabbar
+ } from 'mint-ui'
 
 import Bq from './bq/bq'
 import Card from './card'
@@ -20,6 +31,8 @@ import TripleBounce from './triple.bounce'
 import Prompt from './prompt'
 import Empty from './empty'
 import Page from './page'
+import Footer from './footer'
+import CardInput from './card.input'
 
 import InfiniteScroll from './infinite.scroll'
 import Messagebox from './messagebox'
@@ -38,6 +51,11 @@ const install = function(Vue, _opts = {}) {
   Vue.component('bq-switch', Switch)
   Vue.component('bq-action-sheet', Actionsheet)
   Vue.component('bq-spinner', Spinner)
+  Vue.component('bq-tabs', Tabbar)
+  Vue.component('bq-tab', TabItem)
+  Vue.component('bq-tab-content', TabContainer)
+  Vue.component('bq-tab-content-item', TabContainerItem)
+  Vue.component(CardInput.name, CardInput)
   Vue.component(Card.name, Card)
   Vue.component(CardContent.name, CardContent)
   Vue.component(CardHeader.name, CardHeader)
@@ -57,6 +75,7 @@ const install = function(Vue, _opts = {}) {
   Vue.component(Prompt.name, Prompt)
   Vue.component(Empty.name, Empty)
   Vue.component(Page.name, Page)
+  Vue.component(Footer.name, Footer)
 
   Vue.use(InfiniteScroll)
   Vue.use(Messagebox)

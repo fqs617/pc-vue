@@ -4,6 +4,9 @@ import AuthRouter from '@/utils/auth.router'
 import App from '@/views/app.vue'
 import demoRouter from '@/views/demo'
 import homeRouter from '@/views/home'
+import fileRouter from '@/views/file'
+import meRouter from '@/views/me'
+import searchRouter from '@/views/search'
 Vue.use(Router)
 
 let routes = []
@@ -24,8 +27,11 @@ let redirectRoute = {
   redirect: '/'
 }
 
-demoRouter(routes)
-homeRouter(routes)
+demoRouter(routes) // 底部导航不显示的情况
+homeRouter(rootRoutr.children, routes) // 底部导航显示的情况
+fileRouter(rootRoutr.children, routes)
+meRouter(rootRoutr.children, routes)
+searchRouter(routes)
 
 let authRouter = new AuthRouter()
 let authRouters = authRouter.init(routes.concat([rootRoutr, redirectRoute]))

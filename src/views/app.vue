@@ -1,36 +1,39 @@
 <template>
-  <div class="bq-app">
-    <router-view></router-view>
-    <bq-tabbar class="bq-footer" fixed v-model="selected" value="cart">
-      <bq-tab-item id="home" @click.native="onTabItem('home')">
-        <i class="bq-icon-home" slot="icon"></i> 首页
-      </bq-tab-item>
-      <bq-tab-item id="mart" @click.native="onTabItem('mart')">
-        <i class="bq-icon-mart" slot="icon"></i> 闪送超市
-      </bq-tab-item>
-      <bq-tab-item id="cart" @click.native="onTabItem('cart')">
-        <!-- 购物车抛物线结束点 bq-parabola-end -->
-        <i class="bq-icon-cart bq-parabola-end" slot="icon">
-        </i> 购物车
-      </bq-tab-item>
-      <bq-tab-item id="my" @click.native="onTabItem('my')">
-        <i class="bq-icon-my" slot="icon"></i> 我的
-      </bq-tab-item>
-    </bq-tabbar>
-  </div>
+  <bq-page class="bq-root">
+    <router-view :scroll-top-value="scrollTopValue" v-on:resetScrollVariable="resetScrollVariable" ></router-view>
+    <div v-if="scrollTopValue>12 && selected=='home'"  class="gtop" @click="scrollTop(0)"></div>
+    <bq-footer class="bq-app-tabs">
+      <bq-tabs v-model="selected" :fixed="true">
+        <bq-tab id="home" @click.native="onTabItem('home')">
+          <i class="bq-icon-root-home" slot="icon"></i>
+          首页
+        </bq-tab>
+        <bq-tab id="file" @click.native="onTabItem('file')">
+          <i class="bq-icon-root-category" slot="icon"></i>
+          文件
+        </bq-tab>
+        <bq-tab id="me" @click.native="onTabItem('me')">
+          <i class="bq-icon-root-me" slot="icon"></i>
+          我的
+        </bq-tab>
+      </bq-tabs>
+    </bq-footer>
+  </bq-page>
 </template>
 <script>
-  import {Tabbar, TabItem} from 'mint-ui'
   import {mapActions} from 'vuex'
   export default {
     name: 'app',
     data() {
       return {
-        selected: 'cart'
+        scrollTopValue: 0,
+        refContent: null,
+        selected: 'home'
       }
     },
     mounted() {
       let {meta, name} = this.$route
+      console.log(meta)
       if (meta && meta.isApp) {
         this.selected = name
       }
@@ -59,64 +62,72 @@
       '$route' (to) {
         this.selected = to.name
       }
-    },
-    components: {
-      bqTabbar: Tabbar,
-      bqTabItem: TabItem
     }
   }
 </script>
 <style lang="scss">
   @import 'scss/variables';
   @import 'scss/mixin';
-  $tabbar-bg: #ffffff;
-  $tabbar-border: #aaaaaa;
-  $tabbar-color: #666666;
-  .bq-app {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    .mint {
-      &-tabbar {
-        height: 48px;
-        //margin: 0 5px;
-        background: $tabbar-bg;
-        border: 0 solid $tabbar-border;
-        box-shadow: 0 2px 6px 0 rgba(126, 121, 94, 0.60);
-        //border-radius: 4px 4px 0 0;
-        >.mint-tab-item {
-          &.is-selected {
-            background-color: $tabbar-bg;
-            color: $tabbar-color;
+  $iconImgUrl: '../assets/img';
+  @each $item in home, category, me {
+    .bq-icon-root-#{$item} {
+      @include baseIcon('/home/#{$item}.png', 22px, 20px);
+    }
+    .mint-tab-item.is-selected {
+      .bq-icon-root-#{$item} {
+        @include baseIcon('/home/#{$item}yellow.png', 25px, 25px);
+        top: -2px;
+      }
+    }
+  }
+
+  .bq-root {
+    .bq-footer.bq-app-tabs {
+      z-index: 1999;
+      height: 49px;
+      border-top:1px solid $light-border-color;
+      .mint-tabbar {
+        height: 49px;
+        .mint-tab-item {
+          text-align: center;
+          padding-top: 9px;
+          padding-bottom: 6px;
+          position: relative;
+          .badge{
+            position: absolute;
+            top: 0;
+            right: 10px;
           }
-        }
-        &.is-fixed {
-          z-index: 8000;
+          &-icon {
+            margin: 0;
+            width: 100%;
+            height: 25px;
+          }
+          &-label {
+            font-size: 10px;
+            color: #666;
+          }
         }
       }
-      &-tab-item {
-        color: $tabbar-color;
-        padding: 8px 0;
-        &:hover {
-          text-decoration: none;
-        }
-        &-icon {
-          height: 18px!important;
-          .cart-num {
-            position: absolute;
-            display: block;
-            right: -15px;
-            top: -18px;
-          }
-        }
-        &-label {
-          font-family: $font-family-base;
-          @include font-dpr(12px);
-          color: $tabbar-color;
-          letter-spacing: 0;
-          line-height: 10px;
+      .mint-tabbar > .mint-tab-item.is-selected .mint-tab-item-label {
+        position: initial;
+        color: $font-color;
+        &:after {
+          height: 0;
         }
       }
     }
+  }
+  .gtop{
+    position: fixed;
+    z-index: 1;
+    bottom: 50px;
+    right: 15px;
+    width: 47px;
+    height: 47px;
+    // background: url('../assets/img/home/gotop.png') no-repeat;
+    // background-size: 100%;
+    cursor: pointer;
+    background: pink;
   }
 </style>

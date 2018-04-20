@@ -214,3 +214,33 @@ $animation-curve-default: $animation-curve-fast-out-slow-in !default;
     @content;
   }
 }
+
+// Appearance
+// --------------------------------------------------
+@mixin appearance($val) {
+  -moz-appearance: $val;
+  -ms-appearance: $val;
+  -webkit-appearance: $val;
+  appearance: $val;
+}
+
+// Input Placeholder
+// --------------------------------------------------
+@mixin placeholder($color: #ccc, $text-indent: 0) {
+  &::-moz-placeholder {
+    // Firefox 19+
+    color: $color;
+    @include font-dpr(12px);
+    font-weight: 200;
+  }
+  &:-ms-input-placeholder {
+    color: $color;
+    @include font-dpr(14px);
+  }
+  &::-webkit-input-placeholder {
+    // Safari placeholder margin issue
+    text-indent: $text-indent;
+    color: $color;
+    @include font-dpr(14px);
+  }
+}

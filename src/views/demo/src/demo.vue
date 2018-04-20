@@ -7,7 +7,6 @@
   </bq-header>
   <bq-content ref="content" @scroll="onScroll" class="bg">
   <bq-wx-upload @on-success="onSuccess"></bq-wx-upload>
-    
     <br>
     <div style="background:green;width:100%; height:100px;transition: height 1s ease"></div>
     <bq-card margin-top>
@@ -31,8 +30,8 @@
     <bq-button type="primary" size="large" @click="zuJianSelect">组件 弹出select</bq-button>
     <br>
     <bq-button type="primary" size="large" @click="timeSelect">时间</bq-button>
-    
-    
+
+
     <br>
     <bq-button type="primary" size="large" @click="onPay" ref="end">支付</bq-button>
     <div style="height:1000px; width:100%; background:red;"></div>

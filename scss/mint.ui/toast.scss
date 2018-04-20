@@ -1,0 +1,9 @@
+.mint-toast {
+  background: rgba(0,0,0,0.80);
+  border-radius: 8px;
+  .mint-toast-text {
+    @include font-dpr(14px);
+    color: #fff;
+    font-weight: normal;
+  }
+}

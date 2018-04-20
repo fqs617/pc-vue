@@ -5,9 +5,11 @@ export default function (router) {
     path: '/home',
     name: 'home',
     component: Home,
+    alias: '/', // '/'与‘/home’ 跳转同一个页面
     meta: {
-      requiresAuth: false,
-      requireStoresId: false
+      // requiresAuth: false,
+      // requireStoresId: false,
+      isApp: true
     }
   })
 }

@@ -1,13 +1,13 @@
 .mint-indicator {
   z-index: 3999;
-  width: 144px;
-  height: 121px;
+  width: 100%;
+  height: 100%;
   top: 50%;
   left: 50%;
   position: fixed;
   transform: translate(-50%, -50%);
   border-radius: 7px;
-  // background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.2);
 }
 .mint-indicator-wrapper, .mint-indicator-mask {
   z-index: 4000;
