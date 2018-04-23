@@ -28,9 +28,9 @@ $msgbox-font-size: 14px;
       line-height: 48px;
     }
     &-btn {
-      background-color: $primary;
+      // background-color: $primary;
       @include font-dpr(14px);
-      color: $msgbox-btn-color;
+      color: $primary;
     }
     &-cancel {
       background: #fff;
