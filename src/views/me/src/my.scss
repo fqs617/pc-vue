@@ -1,0 +1,55 @@
+@import 'scss/variables';
+@import 'scss/mixin';
+.my-view {
+  .top {
+    background: #fff;
+    padding-top: 80px;
+    margin-bottom: 10px;
+    @include border-bottom(#DBDBDB);
+    img {
+      width: 62px;
+      height: 62px;
+      display: block;
+      margin: 0 auto;
+    }
+    p {
+      color: #505050;
+      @include font-dpr(14px);
+      text-align: center;
+      padding: 14px 0 11px 0;
+    }
+  }
+  .bq-content .scroller .bq-card{
+    margin-bottom: 11px;
+    span {
+      @include font-dpr(12px);
+      color: #999999;
+    }
+    margin: 0 auto;
+  }
+  .bq-card[data-v-3310d4ea]:after{
+    border-radius: 0;
+  }
+  .no-register{
+    width: 100px;
+    height: 40px;
+    border: 1px solid #ececec;
+    margin-left: 20px;
+    font-size: 12px;
+    padding: 2px 8px;
+  }
+  .re-gister{
+    text-align: center;
+    padding: 10px;
+  }
+  // .btn {
+  //   padding: 0 15px;
+  //   margin-bottom: 70px;
+  //   button {
+  //     // position: absolute;
+  //     // bottom: 80px;
+  //     width: 92%;
+  //     margin: 20px auto;
+  //   }
+  // }
+}

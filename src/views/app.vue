@@ -6,7 +6,7 @@
       <bq-tabs v-model="selected" :fixed="true">
         <bq-tab id="home" @click.native="onTabItem('home')">
           <i class="bq-icon-root-home" slot="icon"></i>
-          首页
+          签章
         </bq-tab>
         <bq-tab id="file" @click.native="onTabItem('file')">
           <i class="bq-icon-root-category" slot="icon"></i>

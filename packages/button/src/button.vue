@@ -91,12 +91,20 @@
       }
       &-text {
         @include font-dpr(14px);
-        color: #333333;
+        color: #656b79;
       }
       &:after {
         background-color: $primary;
         border-radius: 20px;
         opacity: 0;
+      }
+      &--default{
+        box-shadow:0 0 0.026667rem #fff;
+        background: #fff;
+        border: none;
+        outline: none;
+        border-radius: 0;
+        border:0;
       }
     }
   }
