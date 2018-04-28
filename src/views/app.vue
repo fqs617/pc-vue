@@ -33,7 +33,6 @@
     },
     mounted() {
       let {meta, name} = this.$route
-      console.log(meta)
       if (meta && meta.isApp) {
         this.selected = name
       }

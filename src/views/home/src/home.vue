@@ -67,14 +67,26 @@ export default {
       returnData: {
         type: 1,
         parameter: ''
+      },
+      params: {
+        page: 1,
+        pageSize: 20,
+        type: 5
       }
     }
   },
   created() {
-    this.TestService = new TestService()
-    this.TestService.getHome().then(res => {
-      console.log(res)
-    })
+    // this.TestService = new TestService()
+    // let par = this.params
+    // this.TestService.getHome(par).then(res => {
+    //   console.log(res)
+    // })
+    let res = {
+      uid: 1,
+      uname: 'bqbeijing001',
+      token: '6qvlkh6khz'
+    }
+    this.setLoginCookie(res)
   },
   mounted () {
   },

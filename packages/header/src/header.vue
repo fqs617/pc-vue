@@ -43,10 +43,6 @@ export default {
   methods: {
     init() {
       let $el = $(this.$el)
-      console.log(this.isLeftButton)
-      console.log(this.isLeftIcon)
-      console.log(this.isLeft)
-      console.log(!this.isLeft && this.isLeftButton)
       $el.on('touchmove', e => {
         e.preventDefault()
       })

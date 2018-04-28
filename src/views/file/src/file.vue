@@ -13,7 +13,7 @@
   <bq-content>
     <bq-tabs v-model="selected" class="tab-top">
       <bq-tab id="1">
-        代他人签署
+        待他人签署
       </bq-tab>
       <bq-tab id="2">
         已完成签署
@@ -22,44 +22,38 @@
         草稿箱
       </bq-tab>
       <bq-tab id="4">
+        已撤销
+      </bq-tab>
+      <bq-tab id="5">
         已拒签
+      </bq-tab>
+      <bq-tab id="6">
+        已解约
       </bq-tab>
     </bq-tabs>
     <bq-tab-content v-model="selected" class="tab-content-box">
-    <bq-tab-content-item id="1">
-      <bq-card>
-        <bq-card-input padding placeholder="请输入订货单号/商品条码/商品名称" v-model="orderData.parameter">
-        </bq-card-input>
-      </bq-card>
-    </bq-tab-content-item>
-    <bq-tab-content-item id="2">
-      <bq-card>
-        <bq-card-input padding placeholder="请输入退货单号/商品条码/商品名称" v-model="returnData.parameter">
-        </bq-card-input>
-      </bq-card>
-    </bq-tab-content-item>
-    <bq-tab-content-item id="3">
-      <bq-card>
-        <bq-card-input padding placeholder="请输入退货单号/商品条码/商品名称" v-model="returnData.parameter">
-        </bq-card-input>
-      </bq-card>
-    </bq-tab-content-item>
-    <bq-tab-content-item id="4">
-      <bq-card>
-        <bq-card-input padding placeholder="请输入退货单号/商品条码/商品名称" v-model="returnData.parameter">
-        </bq-card-input>
-      </bq-card>
-    </bq-tab-content-item>
-  </bq-tab-content>
+      <take-item :listinfo="listinfo" :type="selected"></take-item>
+    </bq-tab-content>
   </bq-content>
 </bq-page>
 </template>
 <script>
-import TestService from '@/services/test.service'
+import FileService from '@/services/file.services'
+import takeItem from '@/views/file/src/take.item.vue'
 export default {
   data () {
     return {
       selected: '1',
+      listinfo: {},
+      status: {
+        loading: false,
+        noMoreGoods: false
+      },
+      params: {
+        page: 1,
+        pageSize: 20,
+        type: 5
+      },
       orderData: {
         type: 1,
         parameter: ''
@@ -71,10 +65,9 @@ export default {
     }
   },
   created() {
-    this.TestService = new TestService()
-    this.TestService.getHome().then(res => {
-      console.log(res)
-    })
+    this.FileService = new FileService()
+    this.getInfo()
+
   },
   mounted () {
   },
@@ -83,11 +76,24 @@ export default {
   methods: {
     onScroll(e) {
       console.log(e)
+    },
+    getInfo () {
+      if (this.status.loading) {
+        return
+      }
+      this.status.loading = true
+      this.params.type = this.selected
+      this.FileService.getList(this.params).then(res => {
+        this.listinfo = res.banners
+      })
     }
   },
   updated () {
   },
   beforeDestroy () {
+  },
+  components: {
+    takeItem
   },
   watch: {
     'selected'() {
