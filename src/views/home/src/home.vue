@@ -55,8 +55,10 @@
 </bq-page>
 </template>
 <script>
+import LoginMixin from '@/mixins/login.mixin'
 import TestService from '@/services/test.service'
 export default {
+  mixins: [ LoginMixin ],
   data () {
     return {
       selected: '1',
@@ -84,7 +86,8 @@ export default {
     let res = {
       uid: 1,
       uname: 'bqbeijing001',
-      token: '6qvlkh6khz'
+      token: '6qvlkh6khz',
+      typeUser: 1
     }
     this.setLoginCookie(res)
   },

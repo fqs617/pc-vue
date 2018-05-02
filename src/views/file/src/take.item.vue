@@ -6,62 +6,51 @@
          infinite-scroll-distance="50"
          infinite-scroll-check-load="true">
       <list-item v-for="item in listinfo"
-                      :key="item.orderId || item.returnOrderId"
+                      :key="item.orderId"
                       :orderitem="item"
-                      :ordertype="listInfo.orderType"
+                      :ordertype="type"
                       >
       </list-item>
-      <p v-if="hasNext && list.length!=0" class="noiteminfo">
+      <p v-if="hasNext && listinfo.length!=0" class="noiteminfo">
         没有更多数据了...
       </p>
       <div class="bq-f-loading" v-show="isReq">
         <bq-triple-bounce></bq-triple-bounce>
       </div>
     </div>
-    <bq-prompt v-if="list.length==0 && !isReq" title="暂无数据" ></bq-prompt>
+    <bq-prompt v-if="listinfo.length==0 && !isReq" title="暂无数据" ></bq-prompt>
   </div>
 </template>
 <script>
 import ListItem from './item.list.vue'
+import FileService from '@/services/file.services'
 export default {
   data () {
     return {
-      pageSize: 10,
-      page: 1,
-      list: [],
       hasNext: false,
-      itemNumber: 0,
-      listInfo: this.listinfo,
-      isReq: false  // 是否处于加载状态
+      listinfo: [],
+      isReq: false, // 是否处于加载状态
+      params: {
+        page: 1,
+        pageSize: 20,
+        type: ''
+      }
     }
   },
   props: {
-    listinfo: Object,
     type: ''
   },
   mounted () {
-    // this.OrderService = new OrderService()
+    this.FileService = new FileService()
     this.initGetList()
-    console.log(this.type)
   },
   methods: {
     // 获取列表数据
     async getList () {
       this.isReq = true
-      let params = {}
-      params.page = this.page
-      params.pageSize = this.pageSize
-      let res = null
-      if (this.listinfo.orderType === 'order') {
-        res = await this.OrderService.getOrderList(params)
-      } else {
-        res = await this.OrderService.getReturnList(params)
-      }
-      res.list.forEach(item => {
-        this.itemNumber++
-        item.index = this.itemNumber
-        this.list.push(item)
-      })
+      this.params.type = this.type
+      let res = await this.FileService.getList(this.params)
+      this.listinfo = res.list
       if (res.next === 0) {
         this.hasNext = true
       } else {
@@ -75,8 +64,9 @@ export default {
     },
     // 获取下一页数据
     netGetList () {
+      console.log(this.isReq)
       if (!this.isReq) {
-        this.page++
+        this.params.page++
         this.getList()
       }
     }
@@ -86,15 +76,15 @@ export default {
     listInfo: {
       handler: function () {
         this.hasNext = true
-        this.list = []
-        this.itemNumber = 0
-        this.page = 1
-        // this.getList()
+        this.listinfo = []
+        this.params.page = 1
+        this.getList()
       },
       deep: true
     },
     type(val) {
       console.log(val)
+      this.getList()
     }
   },
   components: {

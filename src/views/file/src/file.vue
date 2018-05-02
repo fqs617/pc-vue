@@ -11,7 +11,7 @@
       </bq-button>
     </bq-header> -->
   <bq-content>
-    <bq-tabs v-model="selected" class="tab-top">
+    <bq-tabs v-model="selected" class="tab-top" v-if="typeUser === '1'">
       <bq-tab id="1">
         待他人签署
       </bq-tab>
@@ -31,8 +31,19 @@
         已解约
       </bq-tab>
     </bq-tabs>
+    <bq-tabs v-model="selected" class="tab-top" v-if="typeUser === '2'">
+      <bq-tab id="1">
+        待自己签署
+      </bq-tab>
+      <bq-tab id="2">
+        已完成签署
+      </bq-tab>
+      <bq-tab id="3">
+        已拒签
+      </bq-tab>
+    </bq-tabs>
     <bq-tab-content v-model="selected" class="tab-content-box">
-      <take-item :listinfo="listinfo" :type="selected"></take-item>
+      <take-item :type="selected"></take-item>
     </bq-tab-content>
   </bq-content>
 </bq-page>
@@ -44,30 +55,13 @@ export default {
   data () {
     return {
       selected: '1',
-      listinfo: {},
-      status: {
-        loading: false,
-        noMoreGoods: false
-      },
-      params: {
-        page: 1,
-        pageSize: 20,
-        type: 5
-      },
-      orderData: {
-        type: 1,
-        parameter: ''
-      },
-      returnData: {
-        type: 1,
-        parameter: ''
-      }
+      typeUser: null
     }
   },
   created() {
     this.FileService = new FileService()
-    this.getInfo()
-
+    this.typeUser = this.$cookie.get('typeUser')
+    console.log(this.typeUser)
   },
   mounted () {
   },
@@ -76,16 +70,6 @@ export default {
   methods: {
     onScroll(e) {
       console.log(e)
-    },
-    getInfo () {
-      if (this.status.loading) {
-        return
-      }
-      this.status.loading = true
-      this.params.type = this.selected
-      this.FileService.getList(this.params).then(res => {
-        this.listinfo = res.banners
-      })
     }
   },
   updated () {
@@ -96,10 +80,6 @@ export default {
     takeItem
   },
   watch: {
-    'selected'() {
-      this.selType = 1
-      this.orderData.parameter = ''
-    }
   }
 }
 </script>
