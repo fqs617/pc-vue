@@ -3,7 +3,7 @@
     <div class="order-list-content"
          v-infinite-scroll="netGetList"
          infinite-scroll-disabled="hasNext"
-         infinite-scroll-distance="50"
+         infinite-scroll-distance="100"
          infinite-scroll-check-load="true">
       <list-item v-for="item in listinfo"
                       :key="item.orderId"
@@ -50,7 +50,7 @@ export default {
       this.isReq = true
       this.params.type = this.type
       let res = await this.FileService.getList(this.params)
-      this.listinfo = res.list
+      this.listinfo = this.listinfo.concat(res.list)
       if (res.next === 0) {
         this.hasNext = true
       } else {

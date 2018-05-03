@@ -10,38 +10,38 @@
         🔍
       </bq-button>
     </bq-header> -->
+        <bq-tabs v-model="selected" class="tab-top" v-if="typeUser === '1'">
+          <bq-tab id="1">
+            待他人签署
+          </bq-tab>
+          <bq-tab id="2">
+            已完成签署
+          </bq-tab>
+          <bq-tab id="3">
+            草稿箱
+          </bq-tab>
+          <bq-tab id="4">
+            已撤销
+          </bq-tab>
+          <bq-tab id="5">
+            已拒签
+          </bq-tab>
+          <bq-tab id="6">
+            已解约
+          </bq-tab>
+        </bq-tabs>
+        <bq-tabs v-model="selected" class="tab-top" v-if="typeUser === '2'">
+          <bq-tab id="1">
+            待自己签署
+          </bq-tab>
+          <bq-tab id="2">
+            已完成签署
+          </bq-tab>
+          <bq-tab id="3">
+            已拒签
+          </bq-tab>
+        </bq-tabs>
   <bq-content>
-    <bq-tabs v-model="selected" class="tab-top" v-if="typeUser === '1'">
-      <bq-tab id="1">
-        待他人签署
-      </bq-tab>
-      <bq-tab id="2">
-        已完成签署
-      </bq-tab>
-      <bq-tab id="3">
-        草稿箱
-      </bq-tab>
-      <bq-tab id="4">
-        已撤销
-      </bq-tab>
-      <bq-tab id="5">
-        已拒签
-      </bq-tab>
-      <bq-tab id="6">
-        已解约
-      </bq-tab>
-    </bq-tabs>
-    <bq-tabs v-model="selected" class="tab-top" v-if="typeUser === '2'">
-      <bq-tab id="1">
-        待自己签署
-      </bq-tab>
-      <bq-tab id="2">
-        已完成签署
-      </bq-tab>
-      <bq-tab id="3">
-        已拒签
-      </bq-tab>
-    </bq-tabs>
     <bq-tab-content v-model="selected" class="tab-content-box">
       <take-item :type="selected"></take-item>
     </bq-tab-content>
@@ -87,6 +87,7 @@ export default {
 @import 'scss/variables.scss';
 @import 'scss/mixin.scss';
 .bq-page-search{
+  position: relative;
   .mint-header-button {
     .bq-order-headright {
       color: $font-color;
@@ -94,15 +95,34 @@ export default {
     }
   }
   .tab-top{
-    position: absolute;
-    top: 0;
+    position: fixed;
+    top: 44px;
     height: 45px;
+    z-index: 100;
+    background: #fff;
+    overflow-x: scroll!important;
+    display: -webkit-box;
+    -webkit-overflow-scrolling:touch;
     a{
       line-height: 45px;
     }
     .mint-tab-item{
+      width: 90px;
       padding: 0;
       line-height: 45px;
+      text-align: center;
+    }
+    .mint-tab-item:nth-child(3){
+      width: 65px;
+    }
+    .mint-tab-item:nth-child(4){
+      width: 60px;
+    }
+    .mint-tab-item:nth-child(5){
+      width: 60px;
+    }
+    .mint-tab-item:nth-child(6){
+      width: 70px;
     }
     .mint-tab-item-label{
       line-height: 45px;
