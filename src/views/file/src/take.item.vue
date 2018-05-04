@@ -38,7 +38,8 @@ export default {
     }
   },
   props: {
-    type: ''
+    type: '',
+    isSeach: ''
   },
   mounted () {
     this.FileService = new FileService()
@@ -49,6 +50,9 @@ export default {
     async getList () {
       this.isReq = true
       this.params.type = this.type
+      if (this.isSeach) {
+        this.params.type = 1
+      }
       let res = await this.FileService.getList(this.params)
       this.listinfo = this.listinfo.concat(res.list)
       if (res.next === 0) {

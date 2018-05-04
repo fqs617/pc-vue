@@ -9,3 +9,6 @@ export const UPDATE_LOADING = 'UPDATE_LOADING'
 
 // 第一次进入加载loading 设置状态 别的时候 不加载loading
 export const SET_FIRST_LOADING_STATE = 'SET_FIRST_LOADING_STATE'
+
+// 合同查询条件
+export const GET_SEARCH_STATUS = 'GET_SEARCH_STATUS'

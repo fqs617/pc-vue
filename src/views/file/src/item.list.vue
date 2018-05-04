@@ -1,10 +1,10 @@
 <template>
   <bq-card class="item-wrap" @click.native="goDetail(orderType,orderItem)">
     <bq-card-content padding>
-      <p>{{orderItem.returnOrderCode}}<div class="btn">{{orderItem.status_str}}</div></p>
-      <p>退货数量：{{orderItem.payStatusDesc}}</p>
-      <p>退货时间：{{orderItem.orderPrice}}</p>
-      <p>退货金额：¥{{orderItem.orderCode}}</p>
+      <p>12345678<div class="btn">挖掘机械急急急</div></p>
+      <p>退货数量：退货数量</p>
+      <p>退货时间：退货数量</p>
+      <p>退货金额：退货数量</p>
     </bq-card-content>
     <bq-card-footer v-if="orderType=='order' && orderItem.status!=1 && orderItem.status!=2 && orderItem.status!=6">
       <bq-button size="small" type="primary" class="bq-btn" v-if="orderItem.status==0" @click.stop="orderCancle(orderItem)">取消订单</bq-button>

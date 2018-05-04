@@ -1,4 +1,7 @@
-import {SET_DEVICE} from './mutation.types'
+import {
+  SET_DEVICE,
+  GET_SEARCH_STATUS
+} from './mutation.types'
 import { isWeixinBrowser } from '@/utils/utils'
 import WxConfig from '@/config/wx.config'
 
@@ -21,4 +24,7 @@ export const initWx = async({ commit }, url) => {
   } catch (err) {
     console.log(err)
   }
+}
+export const setSearchParams = ({commit, state}, params) => {
+  commit(GET_SEARCH_STATUS, {params})
 }

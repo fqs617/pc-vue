@@ -103,6 +103,7 @@ export default {
     overflow-x: scroll!important;
     display: -webkit-box;
     -webkit-overflow-scrolling:touch;
+    border-bottom: 1px solid #dedede;
     a{
       line-height: 45px;
     }

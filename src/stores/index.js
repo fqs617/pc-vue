@@ -6,6 +6,7 @@ import device from './modules/device'
 import loading from './modules/loading'
 import createLogger from 'vuex/dist/logger'
 import VuexLocalPlugin from 'plugins/vuex/vuex.local'
+import compactsearch from './modules/compact.search'
 
 Vue.use(Vuex)
 
@@ -25,7 +26,8 @@ export default new Vuex.Store({
   getters,
   modules: {
     device,
-    loading
+    loading,
+    compactsearch
   },
   strict: debug,
   plugins: plugins

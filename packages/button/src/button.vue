@@ -91,7 +91,7 @@
       }
       &-text {
         @include font-dpr(14px);
-        color: #656b79;
+        color: #fff;
       }
       &:after {
         background-color: $primary;
